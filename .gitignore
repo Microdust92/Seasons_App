@@ -1,2 +1,32 @@
+# OS / OneDrive junk
+Thumbs.db
+desktop.ini
+~$*
+*.lnk
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
 .env
-__pycache__
+.env.*
+
+# Node (if applicable)
+node_modules/
+npm-debug.log*
+yarn.lock
+.pnpm-store/
+
+# Build / logs
+dist/
+build/
+*.log
