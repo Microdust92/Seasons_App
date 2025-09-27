@@ -1,31 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Flask Date App</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-</head>
+{% extends "base.html" %}
 
-<body>
-    <h1>Welcome!</h1>
-    <p>The current year is {{ year }}.</p>
-    <p>The current month is {{ month }}.</p>
+{% block title %}Home — Flask Date App{% endblock %}
 
+{% block content %}
+  <p>The current year is {{ year }}.</p>	
+  <p>The current month is {{ month }}.</p>
 
-{% if month in ["March", "April", "May"] %}
-    <p>It’s Springtime! 🌸</p>
-{% elif month in ["June", "July", "August"] %}
-    <p>It’s Summer! ☀️</p>
-{% elif month in ["September", "October", "November"] %}
-    <p>It’s Fall! 🍂</p>
-{% else %}
-    <p>It’s Winter! ❄️</p>
-{% endif %}
-
-</body>
-</html>
+  {% if month in ["March", "April", "May"] %}
+      <p>It’s Springtime! 🌸</p>
+  {% elif month in ["June", "July", "August"] %}
+      <p>It’s Summer! ☀️</p>
+  {% elif month in ["September", "October", "November"] %}
+      <p>It’s Fall! 🍂</p>
+  {% else %}
+      <p>It’s Winter! ❄️</p>
+  {% endif %}
+  
+  <a href="{{ url_for('icecream') }}">Try the Ice Cream Page</a>
 
 
-</body>
-</html>
-
+{% endblock %}
 

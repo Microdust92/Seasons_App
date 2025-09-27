@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Ice Cream Lab</h1>
+
+  <h2>Today's Random Mix</h2>
+  <p><strong>{{ icecream_mix }}</strong></p>
+
+  <h3>A Chilling History of Ice Cream</h3>
+  
+  <p>History...</p>
+
+  <ul>
+    {% for item in timeline%}
+
+      <li>{{ item }}</li>
+
+      {% endfor %}
+  </ul>
+
+  <h3> Available Flavors </h3>
+  <ul>
+    {% for f in flavors %}
+
+      <li>{{ f }}</li>
+
+    {% endfor %}
+  </ul>
+
+
+  <he3>Available Toppings</he3>
+
+  <ul>
+    {% for t in toppings %}
+
+      <li>{{ t }}</li>
+
+    {% endfor %}
+  </ul>
+
+  <!-- your ice cream content -->
+{% endblock %}
