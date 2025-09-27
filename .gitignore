@@ -214,3 +214,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# Windows / OneDrive artifacts
+Thumbs.db
+desktop.ini
+*.lnk
+~$*
+*.tmp
