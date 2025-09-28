@@ -1,10 +1,86 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Ice Cream Lab</h1>
+  <h1>Welcome to the Ice Cream shop</h1>
 
-  <h2>Today's Random Mix</h2>
+  <h2>Flavor Mix of the Day</h2>
   <p><strong>{{ icecream_mix }}</strong></p>
+
+  <svg viewBox="0 0 220 260" width="320" height="380" style="max-width:100%;">
+
+    <!--Cone-->
+    <path d="M110 240 L50 120 L170 120 Z" fill="{{ colors.cone }}" />
+
+    <!--Scoop-->
+    <path d="M45,110 C50,75 90,65 110,70 C140,60 175,80 175,110 C175,135 150,150 110,150 C70,150 45,135 45,110 Z" fill="{{ colors.scoop }}" />
+
+    <!--topping dots-->
+    {% for t in colors.toppings if t != 'transparent' %}
+      <circle cx="{{ 80 + loop.index*14 }}" cy="{{ 100 + (loop.index0%3)*14 }}" r="4" fill="{{ t }}"/>
+    {% endfor %}
+  </svg>
+
+
+  <h3> Available Flavors </h3>
+  <ul>
+    {% for f in flavors.keys() %}
+
+      <li>
+        <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:{{ flavors[f] }};margin-right:6px;"></span>
+        {{ f }}
+      </li>
+
+    {% endfor %}
+  </ul>
+
+
+  <h3>Available Toppings</h3>
+  <ul>
+    {% for t in toppings.keys() %}
+
+      <li>
+        <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:{{ toppings[t] }};margin-right:6px;"></span>
+        {{ t }}
+      </li>
+
+    {% endfor %}
+  </ul>
+  
+  <!-- Controls to change selections (keeps you on /icecream) -->
+  <form method="get" action="{{ url_for('icecream') }}" style="margin-top:1rem;">
+    <label>Flavor:
+      <select name="flavor">
+        {% for name in flavors.keys() %}
+          <option value="{{ name }}" {% if name == select_flavor %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label style="margin-left:1rem;">Cone:
+      <select name="cone">
+        {% for name in cones.keys() %}
+          <option value="{{ name }}" {% if name == select_cone %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <fieldset style="display:inline-block; margin-left:1rem;">
+      <legend>Toppings</legend>
+      {% for name in toppings.keys() %}
+        <label style="margin-right:.5rem;">
+          <input type="checkbox" name="topping" value="{{ name }}" {% if name in select_toppings %}checked{% endif %}>
+          {{ name }}
+        </label>
+      {% endfor %}
+    </fieldset>
+
+    <button type="submit" style="margin-left:1rem;">Update</button>
+  </form>
+
+
+
+
+
 
   <h3>A Chilling History of Ice Cream</h3>
   
@@ -16,26 +92,6 @@
       <li>{{ item }}</li>
 
       {% endfor %}
-  </ul>
-
-  <h3> Available Flavors </h3>
-  <ul>
-    {% for f in flavors %}
-
-      <li>{{ f }}</li>
-
-    {% endfor %}
-  </ul>
-
-
-  <he3>Available Toppings</he3>
-
-  <ul>
-    {% for t in toppings %}
-
-      <li>{{ t }}</li>
-
-    {% endfor %}
   </ul>
 
   <!-- your ice cream content -->
