@@ -3,6 +3,17 @@
 {% block content %}
   <h1>Welcome to the Ice Cream shop</h1>
 
+    
+  
+  <h3>A Chilling History of Ice Cream</h3>
+  <ul>
+    {% for item in timeline%}
+
+      <li>{{ item }}</li>
+
+      {% endfor %}
+  </ul>
+
   <h2>Flavor Mix of the Day</h2>
   <p><strong>{{ icecream_mix }}</strong></p>
 
@@ -78,21 +89,6 @@
   </form>
 
 
-
-
-
-
-  <h3>A Chilling History of Ice Cream</h3>
-  
-  <p>History...</p>
-
-  <ul>
-    {% for item in timeline%}
-
-      <li>{{ item }}</li>
-
-      {% endfor %}
-  </ul>
 
   <!-- your ice cream content -->
 {% endblock %}
