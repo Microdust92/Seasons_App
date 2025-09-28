@@ -22,15 +22,15 @@ def icecream():
         "Vanilla":         "#F7E9CF",
         "Strawberry":      "#FF6B8A", 
         "Chocolate":       "#5C3D2E", 
-        "Cookie Dough":   "#DCC7A1", 
+        "Cookie Dough":    "#DCC7A1", 
         "Mint":            "#BFE8CF", 
         }
     
     toppings = {
-        "Sprinkles":          "#FFBE0B"   , 
-        "Cherry":             "#D90429"   , 
-        "Chocolate syrup":    "#3E2723"  , 
-        "Strawberry syrup":   "#E63946"  , 
+        "Sprinkles":               "#FFBE0B"   , 
+        "Cherries":                "#D90429"   , 
+        "Chocolate syrup":         "#3E2723"  , 
+        "Strawberry syrup":        "#E63946"  , 
         "Caramel":                 "#C77D36" , 
         "Chocolate Chip Cookies":  "#7B5E3B" , 
         "Whipped Cream":           "#FFFFFF" ,
