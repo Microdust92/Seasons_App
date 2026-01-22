@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>🍦 Here be the Ice Cream Shop 🍦</h2>
+  <p style="color: deeppink;">🍦 - 🍨 - 🍦 - 🍨 - 🍦 - 🍨 - 🍦 - 🍨 - 🍦 - 🍨 - 🍦 </p>
+  <p></p>
+  
+
+  <h3>👻 A Chilling History of Ice Cream! 👻</h3>
+  <ul class="timeline">
+    {% for item in timeline%}
+
+      <li>{{ item }}</li>
+
+      {% endfor %}
+  </ul>
+
+  <h2>Flavor Mix of the Day</h2>
+
+    <p style="color: #d33800;"><strong>{{ icecream_mix }}</strong></p>
+
+
+  <svg viewBox="0 0 220 260" width="320" height="380" style="max-width:100%;">
+
+    <!--Cone-->
+    <path d="M110 240 L50 120 L170 120 Z" fill="{{ colors.cone }}" />
+
+    <!--first Scoop bottom-->
+    <path d="M45,110 C50,75 90,65 110,70 C140,60 175,80 175,110 C175,135 150,150 110,150 C70,150 45,135 45,110 Z" fill="{{ colors.scoop }}" />
+    <!--second Scoop top-->
+    <path d="M45,110 C50,75 90,65 110,70 C140,60 175,80 175,110 C175,135 150,150 110,150 C70,150 45,135 45,110 Z" fill="{{ colors.scoop }}" transform="translate(18,-25) scale(0.85)" opacity="0.98" />
+
+    <!--topping dots-->
+    {% for t in colors.toppings if t != 'transparent' %}
+      <circle cx="{{ 65 + loop.index*23 }}" cy="65"  r="4" fill="{{ t }}"/>
+    {% endfor %}
+    {% for t in colors.toppings if t != 'transparent' %}
+      <circle cx="{{ 45 + loop.index*35 }}" cy="95" r="4" fill="{{ t }}"/>
+    {% endfor %}
+    {% for t in colors.toppings if t != 'transparent' %}
+      <circle cx="{{ 35 + loop.index*40 }}" cy="126" r="4" fill="{{ t }}"/>
+    {% endfor %}
+  </svg>
+
+<div class="two-columns">
+  <fieldset>
+    <legend> Available Flavors </legend>
+    <ul class="ice-list">
+      {% for f in flavors.keys() %}
+
+        <li>
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:{{ flavors[f] }};margin-right:6px;"></span>
+          {{ f }}
+        </li>
+
+      {% endfor %}
+    </ul>
+  </fieldset>
+
+  <fieldset>
+    <legend>Available Toppings</legend>
+    <ul class="ice-list">
+      {% for t in toppings.keys() %}
+
+        <li>
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:{{ toppings[t] }};margin-right:6px;"></span>
+          {{ t }}
+        </li>
+
+      {% endfor %}
+    </ul>
+  </fieldset>
+</div>
+  
+  <!-- Controls to change selections (keeps you on /icecream) -->
+  <form method="get" action="{{ url_for('icecream') }}" style="margin-top:1rem;">
+    <label>Flavor:
+      <select name="flavor">
+        {% for name in flavors.keys() %}
+          <option value="{{ name }}" {% if name == select_flavor %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label style="margin-left:1rem;">Cone:
+      <select name="cone">
+        {% for name in cones.keys() %}
+          <option value="{{ name }}" {% if name == select_cone %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <fieldset style="display:inline-block; margin-left:1rem;">
+      <legend>Toppings</legend>
+      {% for name in toppings.keys() %}
+        <label style="margin-right:.5rem;">
+          <input type="checkbox" name="topping" value="{{ name }}" {% if name in select_toppings %}checked{% endif %}>
+          {{ name }}
+        </label>
+      {% endfor %}
+    </fieldset>
+
+    <button type="submit" style="margin-left:1rem;">Update</button>
+  </form>
+
+
+
+  <!-- your ice cream content -->
+{% endblock %}
